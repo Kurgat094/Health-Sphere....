@@ -16,12 +16,12 @@ class GetStarted : AppCompatActivity() {
         setContentView(R.layout.activity_get_started)
         var nextlogin: TextView = findViewById(R.id.nextLogin)
         var getstarted: TextView = findViewById(R.id.getstarted)
-        nextlogin.setOnClickListener {
-            val loginstart: Intent=Intent(this, SignIn::class.java)
-            startActivity(loginstart)
-        }
+//        nextlogin.setOnClickListener {
+//            val loginstart: Intent=Intent(this, SignIn::class.java)
+//            startActivity(loginstart)
+//        }
         getstarted.setOnClickListener {
-            val intent: Intent = Intent(this, RegisterActivity::class.java)
+            val intent: Intent = Intent(this, SignIn::class.java)
             startActivity(intent)
         }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
