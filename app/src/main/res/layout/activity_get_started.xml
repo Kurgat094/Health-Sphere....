@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/getstarted_background"
+    tools:context=".GetStarted">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        >
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/doctor_stethoscope"
+            android:id="@+id/stethoscopeImage"
+            android:padding="5dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Doctor's Helpline"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            android:layout_marginTop="60dp"
+            android:textColor="@color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Easy access to a variaty of doctors"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:layout_marginTop="20dp" />
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:text="Next"
+           android:id="@+id/nextLogin"
+           android:textSize="20sp"
+           android:textStyle="bold"
+           android:textAlignment="center"
+           android:textColor="@color/black"
+           android:background="@drawable/button"
+           android:layout_marginTop="60dp"
+           android:gravity="center"/>
+        <TextView
+            android:id="@+id/getstarted"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Get Started"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:background="@drawable/button"
+            android:layout_marginTop="30dp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
