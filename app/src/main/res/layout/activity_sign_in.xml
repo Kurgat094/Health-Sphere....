@@ -93,7 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
-                    android:text="Sign Up"
+                    android:text="Sign In"
                     android:id="@+id/sign_up"
                     android:gravity="center"
                     android:textColor="@color/white"

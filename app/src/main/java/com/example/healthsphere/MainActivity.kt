@@ -1,7 +1,9 @@
 package com.example.healthsphere
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -19,6 +21,8 @@ import com.google.android.material.navigation.NavigationView
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var fragmentmanager : FragmentManager
     private lateinit var binding : ActivityMainBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -52,6 +56,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.BottomNavigation.setOnItemSelectedListener { item ->
             when(item.itemId){
                 R.id.bottom_home -> openFragment(HomeFragment())
+                R.id.workouts -> openFragment(WorkoutFragment())
                 R.id.feed -> openFragment(FeedFragment())
                 R.id.Community ->openFragment(CommunityFragment())
             }
@@ -91,6 +96,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
     }
+
     private fun openFragment(fragment: Fragment){
         val fragmentTransaction: FragmentTransaction = fragmentmanager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container, fragment)

@@ -19,6 +19,7 @@ class SignIn : AppCompatActivity() {
         val directtoSignUp: TextView = findViewById(R.id.direct_to_signUp)
         val underlineText: TextView = findViewById(R.id.forgotPassword)
         val goBack: LinearLayout = findViewById(R.id.backbtn)
+        val sign_up: TextView = findViewById(R.id.sign_up)
         val mstring = "Forgot Password?"
         val mSpannableString = SpannableString(mstring)
         mSpannableString.setSpan(UnderlineSpan(), 0, mSpannableString.length, 0)
@@ -32,6 +33,10 @@ class SignIn : AppCompatActivity() {
         goBack.setOnClickListener{
             var gobackIntent : Intent= Intent( this, GetStarted::class.java)
             startActivity(gobackIntent)
+        }
+        sign_up.setOnClickListener{
+            val directHomebtn: Intent =Intent( this, MainActivity::class.java)
+            startActivity(directHomebtn)
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

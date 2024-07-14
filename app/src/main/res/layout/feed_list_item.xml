@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="20dp"
+    android:layout_marginHorizontal="8dp"
+    android:background="@drawable/feedlistbackground"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/title_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/healthimg1"
+        app:shapeAppearanceOverlay="@style/RoundCorner"/>
+
+    <TextView
+        android:id="@+id/feedHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="what is the replication crisis?"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_toEndOf="@id/title_image"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+         />
+    <TextView
+        android:id="@+id/feedDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="This article will look at the subject providing a brief overview of the subject"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:layout_below="@id/feedHeading"
+        android:layout_toEndOf="@id/title_image"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        />
+</RelativeLayout>

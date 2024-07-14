@@ -1,18 +1,377 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    android:background="@color/whatsapp_grey"
+    tools:context=".MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="@color/blue_10"
-        android:textStyle="bold"
-        android:text="Home fragment" />
+<!--    <HorizontalScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="170dp">-->
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_marginTop="170dp"
+           android:layout_gravity="center"
+           >
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:padding="16dp">
 
-</FrameLayout>
+               <!-- Hospital -->
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:background="@drawable/homeicons"
+                   android:orientation="vertical"
+                   android:layout_margin="8dp">
+
+                   <ImageView
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       android:src="@drawable/hospital_solid"
+                       android:contentDescription="Hospitals" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Hospitals"
+                       android:textColor="@color/white"
+                       android:textSize="14sp" />
+               </LinearLayout>
+
+               <!-- Doctors -->
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:background="@drawable/homeicons"
+                   android:orientation="vertical"
+                   android:layout_margin="8dp">
+
+                   <ImageView
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       android:src="@drawable/baseline_person_24"
+                       android:contentDescription="Doctors" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Doctors"
+                       android:textColor="@color/white"
+                       android:textSize="14sp" />
+               </LinearLayout>
+
+               <!-- Calendar -->
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:background="@drawable/homeicons"
+                   android:orientation="vertical"
+                   android:layout_margin="8dp">
+
+                   <ImageView
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       android:src="@drawable/baseline_calendar_today_24"
+                       android:contentDescription="calender" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Calendar"
+                       android:textColor="@color/white"
+                       android:textSize="14sp" />
+               </LinearLayout>
+
+               <!-- Reminder -->
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:orientation="vertical"
+                   android:background="@drawable/roundbackground"
+                   android:layout_margin="8dp">
+
+                   <ImageView
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       android:layout_gravity="center"
+                       android:foregroundGravity="center"
+                       android:src="@drawable/access_time_filled_24"
+                       android:contentDescription="Reminder" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Reminder"
+                       android:textColor="@color/white"
+                       android:textSize="10sp" />
+               </LinearLayout>
+
+               <!-- Add other items here -->
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:padding="16dp">
+
+               <!-- Hospital -->
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:background="@drawable/homeicons"
+                   android:orientation="vertical"
+                   android:layout_margin="8dp">
+
+                   <ImageView
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       android:src="@drawable/baseline_search_24"
+                       android:contentDescription="Hospitals" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="self Diagnosis"
+                       android:textColor="@color/white"
+                       android:textSize="10sp" />
+               </LinearLayout>
+
+               <!-- Doctors -->
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:background="@drawable/homeicons"
+                   android:orientation="vertical"
+                   android:layout_margin="8dp">
+
+                   <ImageView
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       android:src="@drawable/doctor"
+                       android:contentDescription="Appointment" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Appointment"
+                       android:textColor="@color/white"
+                       android:textSize="10sp" />
+               </LinearLayout>
+
+               <!-- Calendar -->
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:background="@drawable/homeicons"
+                   android:orientation="vertical"
+                   android:layout_margin="8dp">
+
+                   <ImageView
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       android:src="@drawable/vials_solid"
+                       android:contentDescription="calender" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Medicine"
+                       android:textColor="@color/white"
+                       android:textSize="14sp" />
+               </LinearLayout>
+
+               <!-- Reminder -->
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:orientation="vertical"
+                   android:background="@drawable/roundbackground"
+                   android:layout_margin="8dp">
+
+                   <ImageView
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       android:layout_gravity="center"
+                       android:foregroundGravity="center"
+                       android:src="@drawable/baseline_location_on_24"
+                       android:contentDescription="Reminder" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Reminder"
+                       android:textColor="@color/white"
+                       android:textSize="10sp" />
+               </LinearLayout>
+
+               <!-- Add other items here -->
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:padding="16dp">
+
+               <!-- Hospital -->
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:background="@drawable/homeicons"
+                   android:orientation="vertical"
+                   android:layout_margin="8dp">
+
+                   <ImageView
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       android:src="@drawable/pills_solid"
+                       android:contentDescription="Hospitals" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Vaccination"
+                       android:textColor="@color/white"
+                       android:textSize="14sp" />
+               </LinearLayout>
+
+               <!-- Doctors -->
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:background="@drawable/homeicons"
+                   android:orientation="vertical"
+                   android:layout_margin="8dp">
+
+                   <ImageView
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       android:src="@drawable/sharp_call_24"
+                       android:contentDescription="Doctors" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Contacts"
+                       android:textColor="@color/white"
+                       android:textSize="14sp" />
+               </LinearLayout>
+
+               <!-- Calendar -->
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:background="@drawable/homeicons"
+                   android:orientation="vertical"
+                   android:layout_margin="8dp">
+
+                   <ImageView
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+
+                       android:contentDescription="calender" />
+
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textColor="@color/white"
+                       android:textSize="14sp" />
+               </LinearLayout>
+
+               <!-- Reminder -->
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:gravity="center"
+                   android:orientation="vertical"
+                   android:background="@drawable/roundbackground"
+                   android:layout_margin="8dp">
+
+                   <ImageView
+                       android:id="@+id/workout"
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       android:layout_gravity="center"
+                       android:foregroundGravity="center"
+                       android:src="@drawable/baseline_add_24"
+                       android:contentDescription="Reminder" />
+
+               </LinearLayout>
+
+               <!-- Add other items here -->
+           </LinearLayout>
+
+       </LinearLayout>
+
+
+<!--    </HorizontalScrollView>-->
+</RelativeLayout>
+
+
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".HomeFragment">-->
+<!--    <GridLayout-->
+<!--        android:id="@+id/gridlayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="130dp"-->
+<!--        android:columnCount="4"-->
+<!--        android:padding="16dp">-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_margin="8dp">-->
+<!--            <ImageView-->
+<!--                android:layout_width="70dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:background="@drawable/homeicons"-->
+<!--                android:src="@drawable/hospital_solid"-->
+<!--                />-->
+<!--            <ImageView-->
+<!--                android:layout_width="70dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:background="@drawable/homeicons"-->
+<!--                android:src="@drawable/hospital_solid"-->
+<!--                />-->
+<!--            <ImageView-->
+<!--                android:layout_width="70dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:background="@drawable/homeicons"-->
+<!--                android:src="@drawable/hospital_solid"-->
+<!--                />-->
+<!--            <ImageView-->
+<!--                android:layout_width="70dp"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:background="@drawable/homeicons"-->
+<!--                android:src="@drawable/hospital_solid"-->
+<!--                />-->
+<!--        </LinearLayout>-->
+<!--    </GridLayout>-->
+<!--</RelativeLayout>-->

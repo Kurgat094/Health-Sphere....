@@ -14,10 +14,10 @@ class GetStarted : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_get_started)
-        var nextlogin: TextView = findViewById(R.id.nextLogin)
-        var getstarted: TextView = findViewById(R.id.getstarted)
-//        nextlogin.setOnClickListener {
-//            val loginstart: Intent=Intent(this, SignIn::class.java)
+        var workouts: TextView = findViewById(R.id.workouts)
+        val getstarted: TextView = findViewById(R.id.getstarted)
+//        workouts.setOnClickListener {
+//            val loginstart: Intent=Intent(this, WorkoutActivity::class.java)
 //            startActivity(loginstart)
 //        }
         getstarted.setOnClickListener {

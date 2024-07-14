@@ -2,6 +2,16 @@
     <string name="app_name">Health Sphere</string>
     <string name="nav_open">Open navigation Drawer</string>
     <string name="nav_close">close navigation Drawer</string>
+<!--    workout strings-->
+    <string name="workout1">Workouts </string>
+    <string name="workout2">Workout activity </string>
+    <string name="workout3">Workout activity</string>
+    <string name="workout4">Workout activity</string>
+    <string name="workout5">Workout activity</string>
+    <string name="workout6">Workout activity</string>
+    <string name="workout7">Workout activity</string>
+    <string name="workout8">Workout activity</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

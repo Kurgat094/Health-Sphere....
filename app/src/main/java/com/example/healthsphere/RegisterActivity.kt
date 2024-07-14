@@ -17,7 +17,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
         val sign_up : TextView = findViewById(R.id.sign_up)
         sign_up.setOnClickListener {
-            var signIntent: Intent = Intent(this, MainActivity::class.java)
+            var signIntent: Intent = Intent(this, OTP_Activity::class.java)
             startActivity(signIntent)
         }
         val backbtn: LinearLayout = findViewById(R.id.backbtn)

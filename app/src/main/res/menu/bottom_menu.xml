@@ -6,6 +6,10 @@
         android:id="@+id/feed"
         android:icon="@drawable/info_solid"/>
     <item
+        android:title="workouts"
+        android:id="@+id/workouts"
+        android:icon="@drawable/stethoscope_solid"/>
+    <item
         android:title="Home"
         android:id="@+id/bottom_home"
         android:icon="@drawable/heart_pulse_solid"
@@ -15,7 +19,7 @@
     <item
         android:title="Community"
         android:id="@+id/Community"
-        android:icon="@drawable/windows"
+        android:icon="@drawable/community"
         />
 <!--    <item-->
 <!--        android:title="Bottom Menu"-->

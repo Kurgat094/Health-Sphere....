@@ -5,6 +5,11 @@
          <item name="colorPrimary">@color/blue_10</item>
         <item name="android:statusBarColor">@color/blue_10</item>
     </style>
+    <style name="RoundCorner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+        <item name="color">@color/white</item>
+    </style>
 
     <style name="Theme.HealthSphere" parent="Base.Theme.HealthSphere" />
 </resources>

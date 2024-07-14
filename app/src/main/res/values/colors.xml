@@ -3,9 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#010D4E</color>
+    <color name="grey">#4C4A49</color>
     <color name="transparent">#00000000</color>
     <color name="SignInBackground">#DFE0E6</color>
     <color name="blue_10">#01105F</color>
+    <color name="blue_shed">#cdd5fe</color>
     <color name="blue_1">#011476</color>
     <color name="whatsapp_grey">#E8E6ED</color>
     <color name="bluegpt">#0000FF</color> <!-- Replace with your desired shade of blue -->
