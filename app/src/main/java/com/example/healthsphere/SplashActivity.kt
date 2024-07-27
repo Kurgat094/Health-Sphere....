@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         val mainHandler = Handler(Looper.getMainLooper())
         mainHandler.postDelayed({
-                                var intent : Intent = Intent(this, GetStarted::class.java)
+            val intent = Intent(this, MainSlide::class.java)
             startActivity(intent)
             // Code to run on the main thread after a delay
 

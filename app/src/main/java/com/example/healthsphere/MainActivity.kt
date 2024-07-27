@@ -81,7 +81,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_more -> openFragment(MoreFragment())
             R.id.nav_contact -> openFragment(ContactFragment())
             R.id.nav_logout -> openFragment(LogoutFragment())
-            R.id.nav_home -> Toast.makeText(this,"Home", Toast.LENGTH_SHORT).show()
             R.id.nav_health -> Toast.makeText(this,"Your Health Priority",Toast.LENGTH_SHORT).show()
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)

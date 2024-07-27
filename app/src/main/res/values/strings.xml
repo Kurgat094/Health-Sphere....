@@ -2,7 +2,7 @@
     <string name="app_name">Health Sphere</string>
     <string name="nav_open">Open navigation Drawer</string>
     <string name="nav_close">close navigation Drawer</string>
-<!--    workout strings-->
+    <!--    workout strings-->
     <string name="workout1">Workouts </string>
     <string name="workout2">Workout activity </string>
     <string name="workout3">Workout activity</string>
@@ -15,5 +15,25 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--    onboarding string-->
+    <!-- Onboarding strings -->
+    <string name="heading_one">Welcome to HealthSphere!</string>
+    <string name="heading_two">Stay Informed with Instant Notifications</string>
+    <string name="heading_three">Experience Hassle-Free Cashless Payments</string>
+    <string name="heading_fourth">Pay Seamlessly Anytime, Anywhere</string>
+
+
+    <!--    //Description-->
+    <!-- Description strings -->
+    <string name="desc_one">Discover a world of health information right at your fingertips. Easily navigate through our app to find top-rated healthcare services near you and stay up-to-date with the latest health tips and news.</string>
+    <string name="desc_two">Receive timely notifications for health updates and alerts. Stay informed about important health events and never miss out on essential information that matters to you.</string>
+    <string name="desc_three">Enjoy the convenience of cashless payments for medical services. Our app ensures a secure and smooth payment process, so you can focus on your health without any hassle.</string>
+    <string name="desc_fourth">Whether you are at home or on the go, our app allows you to make payments anytime and anywhere. Manage your healthcare expenses effortlessly with our flexible payment options.</string>
+
+    <string name="image_description">Image showing various features. Slide number %1$d</string>
+    <string name="heading_description">Heading for slide number %1$d</string>
+    <string name="description_description">Description for slide number %1$d</string>
+
 
 </resources>
