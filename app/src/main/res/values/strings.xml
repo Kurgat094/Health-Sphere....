@@ -11,10 +11,14 @@
     <string name="workout6">Workout activity</string>
     <string name="workout7">Workout activity</string>
     <string name="workout8">Workout activity</string>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="error_name">please input your user Name</string>
+    <string name="error_phoneNo">please enter your Phone number</string>
+    <string name="errorPassword">Please input your password</string>
+    <string name="strongpass">Please enter a Strong Password</string>
+    <string name="errorEmail">please input your Email</string>
+    <string name="check_terms">please agree to out terms and services</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="errorInvalidEmail">Please enter a valid email address.</string>
 
     <!--    onboarding string-->
     <!-- Onboarding strings -->

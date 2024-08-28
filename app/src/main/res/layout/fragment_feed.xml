@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/whatsapp_grey"
-    tools:context=".FeedFragment">
+    tools:context="com.example.fragments.FeedFragment">
 
     <androidx.recyclerview.widget.RecyclerView
 

@@ -1,9 +1,7 @@
 package com.example.healthsphere
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -14,8 +12,15 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.example.fragments.CommunityFragment
+import com.example.fragments.ContactFragment
+import com.example.fragments.FeedFragment
+import com.example.fragments.HomeFragment
+import com.example.fragments.LogoutFragment
+import com.example.fragments.MoreFragment
+import com.example.fragments.PrimeFragment
+import com.example.fragments.WorkoutFragment
 import com.example.healthsphere.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +32,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
+        //set full screen
 
         setContentView(binding.root)
 
@@ -37,11 +43,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             insets
         }
 
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
         setSupportActionBar(binding.toolbar)
         val toggle = ActionBarDrawerToggle(this,binding.drawerLayout, binding.toolbar, R.string.nav_open, R.string.nav_close)
         binding.drawerLayout.addDrawerListener(toggle)
@@ -49,6 +50,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding.navigationDrawer.setNavigationItemSelectedListener(this)
         binding.BottomNavigation.background = null
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         // Set default selected item as Home
         binding.BottomNavigation.selectedItemId = R.id.bottom_home
@@ -67,13 +69,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fragmentmanager = supportFragmentManager
         openFragment(HomeFragment())
     }
-
-//    private fun clearBottomNavigationSelection(bottomNavigationView: BottomNavigationView) {
-//        val menu = bottomNavigationView.menu
-//        for (i in 0 until menu.size()) {
-//            menu.getItem(i).isChecked = false
-//        }
-//    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
