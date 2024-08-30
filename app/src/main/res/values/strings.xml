@@ -19,6 +19,20 @@
     <string name="check_terms">please agree to out terms and services</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="errorInvalidEmail">Please enter a valid email address.</string>
+    //validation
+    <string name="please_wait">Please wait</string>
+    <string name="Checkbox_error">Please agree to our terms and policies</string>
+    <string name="email_error">Please input a Valid Email Address</string>
+    <string name="errorPass">Please Input correct password</string>
+
+    <string name="error_fnameMissing">Please enter name</string>
+    <string name="errorPhonoNo">Please enter Your Mobile Number</string>
+    <string name="sucessregistration">Thanks for Registering! Enjoy</string>
+    <string name="login_success"> Login Successful</string>
+    <string name="forgot_pass"> FORGOT PASSWORD? </string>
+    <string name="email_sent">email sent check your email change password and Login</string>
+    <string name="setpass_info">Enter your email address we will send you an Email to reset your Password</string>
+    <string name="values_saved">Your details are successfully saved in firestore </string>
 
     <!--    onboarding string-->
     <!-- Onboarding strings -->

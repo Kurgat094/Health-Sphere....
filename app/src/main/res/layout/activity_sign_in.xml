@@ -30,7 +30,6 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:src="@drawable/arrow_back"/>
-
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,8 +45,7 @@
                     android:textStyle="bold"
                     android:layout_gravity="start"
                     android:textColor="@color/black"
-                    android:textSize="30dp"/>
-
+                    android:textSize="30sp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,55 +55,79 @@
                     android:textColor="@color/black"
                     android:layout_marginTop="15dp"
                     android:textSize="18dp"/>
-                <EditText
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:drawableLeft="@drawable/baseline_email_24"
-                    android:hint="Email address"
-                    android:inputType="textEmailAddress"
-                    android:textColorHint="@color/black"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="15dp"
-                    android:drawablePadding="15dp"/>
-
-                <EditText
+                    android:layout_height="wrap_content"
+                    android:id="@+id/emailLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:counterEnabled="false">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/et_emailAdress"
+                        android:drawableLeft="@drawable/baseline_email_24"
+                        android:hint="Email Adress"
+                        android:textColorHint="@color/black"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="15dp"
+                        android:drawablePadding="15dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:drawableLeft="@drawable/baseline_lock_24"
-                    android:drawableRight="@drawable/baseline_remove_red_eye_24"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:textColorHint="@color/black"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="15dp"
-                    android:drawablePadding="15dp"/>
+                    android:layout_height="wrap_content"
+                    app:passwordToggleEnabled="true"
+                    android:id="@+id/passLayout"
+                    android:layout_marginBottom="15dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:counterEnabled="false">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:id="@+id/et_password"
+                        android:drawableLeft="@drawable/baseline_lock_24"
+                        android:hint="Password"
+                        android:textColorHint="@color/black"
+                        android:textStyle="bold"
+                        android:inputType="textPassword"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="15dp"
+                        android:drawablePadding="15dp"/>
+                </com.google.android.material.textfield.TextInputLayout>
                 <TextView
+                    android:id="@+id/forgotPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingTop="20dp"
-                    android:textSize="18dp"
-                    android:gravity="center"
-                    android:id="@+id/forgotPassword"
-                    android:layout_centerInParent="true"
-                    android:textColor="@color/blue_1"/>
+                    android:paddingBottom="20dp"
+                     android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+                android:textSize="20sp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:text="Forgot Password?"
+                android:textColor="@color/blue_1"
+                android:layout_centerInParent="true" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:text="Sign In"
                     android:id="@+id/sign_up"
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:background="@drawable/accountbtn"
-                    android:textSize="22dp"
+                    android:textSize="22sp"
                     />
                 <TextView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:gravity="center"
                     android:text="OR"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:textColor="@color/blue_1"
                     android:textStyle="bold"
                     android:background="@drawable/or_btn"
@@ -121,21 +143,9 @@
                     android:textColor="@color/blue_1"
                     android:padding="10dp"
                     android:backgroundTint="@color/white"
-                    android:textSize="22dp"
+                    android:textSize="22sp"
                     />
-                <Button
-                    android:id="@+id/facebook"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="10dp"
-                    android:drawableLeft="@drawable/iconsfacebook"
-                    android:text="Sign with google"
-                    android:shadowColor="@color/black"
-                    android:textColor="@color/blue_1"
-                    android:padding="10dp"
-                    android:backgroundTint="@color/white"
-                    android:textSize="22dp"
-                    />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -149,7 +159,7 @@
                         android:text="New member?"
                         android:textStyle="normal"
                         android:textColor="@color/black"
-                        android:textSize="18dp"/>
+                        android:textSize="18sp"/>
                     <TextView
                         android:id="@+id/direct_to_signUp"
                         android:layout_width="wrap_content"
@@ -158,12 +168,9 @@
                         android:textStyle="bold"
                         android:textColor="@color/blue_1"
                         android:paddingLeft="10dp"
-                        android:textSize="18dp"/>
+                        android:textSize="18sp"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
     </ScrollView>
-
-
 </RelativeLayout>

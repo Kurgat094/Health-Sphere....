@@ -40,7 +40,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".GetStarted"
+            android:name=".ResetPassword"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"

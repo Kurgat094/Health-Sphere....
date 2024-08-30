@@ -29,7 +29,7 @@ class MainSlide : AppCompatActivity() {
         mDotLayout = findViewById(R.id.indicator_layout)
 
         skipBtn.setOnClickListener{
-            val infoIntent: Intent = Intent(this, GetStarted::class.java)
+            val infoIntent: Intent = Intent(this, SignIn::class.java)
             startActivity(infoIntent)
         }
 
@@ -53,7 +53,7 @@ class MainSlide : AppCompatActivity() {
             if (getItem(0) < (mSlideViewPager.adapter?.count?.minus(1) ?: 0)) {
                 mSlideViewPager.setCurrentItem(getItem(1), true)
             } else {
-                val Intent0: Intent = Intent(this, GetStarted::class.java)
+                val Intent0: Intent = Intent(this, SignIn::class.java)
                 startActivity(Intent0)
 
             }

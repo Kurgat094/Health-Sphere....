@@ -22,7 +22,7 @@ class OTP_Activity : AppCompatActivity() {
             startActivity(intent)
         }
         goBack.setOnClickListener{
-            var gobackIntent : Intent= Intent( this, GetStarted::class.java)
+            var gobackIntent : Intent= Intent( this, ResetPassword::class.java)
             startActivity(gobackIntent)
         }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
