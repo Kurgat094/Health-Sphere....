@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
+    android:scrollbars="none"
+    android:background="@color/whatsapp_grey"
     tools:context=".MainActivity">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none">
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:scrollbars="none">-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/constraintLayout"
-            android:layout_marginTop="80dp">
+            android:layout_marginTop="0dp">
 
             <TextView
                 android:id="@+id/amazonName"
@@ -47,7 +48,6 @@
                 android:layout_width="0dp"
                 android:layout_height="90dp"
                 android:id="@+id/amazonImage"
-                android:src="@drawable/healthimg2"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="16dp"
@@ -70,6 +70,7 @@
                     android:layout_height="match_parent"
                     android:id="@+id/clothingCard"
                     android:layout_margin="10dp"
+                    android:backgroundTint="@color/white"
                     android:layout_weight="1"
                     app:cardElevation="20dp"
                     app:cardCornerRadius="20dp">
@@ -106,6 +107,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/white"
                     app:cardElevation="20dp"
                     app:cardCornerRadius="20dp">
 
@@ -129,7 +131,7 @@
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:id="@+id/elecImage"
-                            android:src="@drawable/baseline_person_24"
+                            android:src="@drawable/hospital_solid"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
 
@@ -154,6 +156,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:backgroundTint="@color/white"
                     app:cardElevation="20dp"
                     app:cardCornerRadius="20dp">
 
@@ -177,7 +180,7 @@
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:id="@+id/homeImage"
-                            android:src="@drawable/baseline_calendar_today_24"
+                            android:src="@drawable/hospital_solid"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
 
@@ -188,6 +191,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
+                    android:backgroundTint="@color/white"
                     android:layout_weight="1"
                     app:cardElevation="20dp"
                     app:cardCornerRadius="20dp">
@@ -212,7 +216,7 @@
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:id="@+id/beautyImage"
-                            android:src="@drawable/access_time_filled_24"
+                            android:src="@drawable/hospital_solid"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
 
@@ -236,6 +240,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
+                    android:backgroundTint="@color/white"
                     android:layout_weight="1"
                     app:cardElevation="20dp"
                     app:cardCornerRadius="20dp">
@@ -271,6 +276,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="10dp"
+                    android:backgroundTint="@color/white"
                     android:layout_weight="1"
                     app:cardElevation="20dp"
                     app:cardCornerRadius="20dp">
@@ -290,23 +296,17 @@
                             android:layout_marginTop="10dp"
                             android:layout_centerHorizontal="true"
                             android:layout_below="@+id/grocImage"/>
-
                         <ImageView
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:id="@+id/grocImage"
-                            android:src="@drawable/sharp_call_24"
+                            android:src="@drawable/hospital_solid"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
-
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-
-
-</RelativeLayout>
 

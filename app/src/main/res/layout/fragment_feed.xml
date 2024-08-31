@@ -5,13 +5,10 @@
     android:layout_height="match_parent"
     android:background="@color/whatsapp_grey"
     tools:context="com.example.fragments.FeedFragment">
-
     <androidx.recyclerview.widget.RecyclerView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="10dp"
         tools:listitem="@layout/feed_list_item"
         android:id="@+id/Feedrecycler_view"/>
 

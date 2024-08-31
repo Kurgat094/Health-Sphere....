@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:id="@+id/toolbar"
             android:background="@color/blue"
             android:elevation="4dp"
@@ -36,9 +36,11 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:background="@color/whatsapp_grey"
+            android:layout_marginBottom="80dp"
             android:id="@+id/fragment_container"
             />
-
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -55,6 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/Bottom_navigation"
+
                     app:labelVisibilityMode="labeled"
                     app:menu="@menu/bottom_menu"
                     app:itemIconTint="@color/white"
@@ -70,6 +73,7 @@
         android:id="@+id/navigation_drawer"
         android:layout_gravity="start"
         app:itemIconTint="@color/blue"
+        android:background="@color/whatsapp_grey"
         app:itemTextColor="@color/blue_10"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu"/>

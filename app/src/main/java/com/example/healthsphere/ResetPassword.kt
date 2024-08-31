@@ -29,13 +29,10 @@ class ResetPassword : BazeActivity() {
         backbtn = findViewById(R.id.backbtn)
         setupActionBar()
 
-
-
         backbtn.setOnClickListener{
             val loginActivity: Intent = Intent(this, SignIn::class.java)
             startActivity(loginActivity)
         }
-
         resetPass.setOnClickListener {
             et_email = findViewById(R.id.et_emailAdress)
             val email = et_email.text.toString().trim()
@@ -58,10 +55,8 @@ class ResetPassword : BazeActivity() {
                             showErrorSnackBar(task.exception!!.message.toString(), true)
                         }
                     }
-
             }
         }
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

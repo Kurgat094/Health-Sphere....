@@ -5,13 +5,10 @@
     android:background="@color/whatsapp_grey"
     android:layout_height="match_parent"
     tools:context="com.example.fragments.WorkoutFragment">
-
     <androidx.recyclerview.widget.RecyclerView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="10dp"
         tools:listitem="@layout/item_workout_layout"
         android:id="@+id/recycler_view"/>
 </FrameLayout>

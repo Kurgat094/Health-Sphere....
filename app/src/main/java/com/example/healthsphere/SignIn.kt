@@ -32,23 +32,25 @@ class SignIn :  BazeActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_sign_in)
-        forgotPassword = findViewById(R.id.forgotPassword)
+//        forgotPassword = findViewById(R.id.forgotPassword)
         mbinding = ActivitySignInBinding.inflate(LayoutInflater.from(this))
         setContentView(mbinding.root)
         et_emailAdress = findViewById(R.id.et_emailAdress)
         et_password = findViewById(R.id.et_password)
         logIn = findViewById(R.id.sign_up)
         val directtoSignUp: TextView = findViewById(R.id.direct_to_signUp)
+        val pwdbtn: TextView = findViewById(R.id.pwd)
         val goBack: LinearLayout = findViewById(R.id.backbtn)
         directtoSignUp.setOnClickListener {
             val intent : Intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
-        forgotPassword.setOnClickListener{
-            val forgotPass : Intent = Intent(this, ResetPassword::class.java)
-            startActivity(forgotPass)
-            finish()
+
+        pwdbtn.setOnClickListener {
+            val intent : Intent = Intent(this, ResetPassActivity::class.java)
+            startActivity(intent)
         }
+
         goBack.setOnClickListener{
             val gobackIntent : Intent= Intent( this, MainSlide::class.java)
             startActivity(gobackIntent)
