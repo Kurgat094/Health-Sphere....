@@ -1,6 +1,7 @@
 package com.example.healthsphere
 
 import android.app.Dialog
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -46,4 +47,16 @@ open class BazeActivity : AppCompatActivity() {
     fun hideProgressDialog(){
         mprogressDialog.dismiss()
     }
+//fun hideProgressDialog() {
+//    // Check if the activity is finishing or destroyed before dismissing the dialog
+//    if (mprogressDialog.isShowing && !isFinishing && !isDestroyed) {
+//        try {
+//            mprogressDialog.dismiss()
+//        } catch (e: IllegalArgumentException) {
+//            // Log the exception if needed
+//            Log.e("BazeActivity", "Failed to dismiss dialog: ${e.message}")
+//        }
+//    }
+//}
+
 }

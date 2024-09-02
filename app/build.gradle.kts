@@ -34,10 +34,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+
     buildFeatures {
         viewBinding = true
     }
 }
+
 
 dependencies {
 
@@ -53,10 +56,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     //additional dependancies
-
     // Import the BoM for the Firebase platform
     implementation(platform(libs.firebase.bom))
-
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation(libs.firebase.auth)
@@ -64,9 +65,14 @@ dependencies {
     implementation(libs.google.firebase.auth)
     implementation(libs.firebase.bom)
     // When using the BoM, you don't specify versions in Firebase library dependencies
-
-
-
+    implementation(libs.com.google.firebase.firebase.firestore.ktx)
+    // Firebase Firestore dependency
+    implementation (libs.firebase.firestore)
+    implementation(libs.firebase.analytics.ktx)
+    //retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

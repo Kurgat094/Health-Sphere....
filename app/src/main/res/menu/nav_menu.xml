@@ -10,8 +10,8 @@
         android:title="Settings"
         android:icon="@drawable/vials_solid"/>
     <item
-        android:title="More"
-        android:id="@+id/nav_more"
+        android:title="Profile"
+        android:id="@+id/nav_profile"
         android:icon="@drawable/stethoscope_solid"
         />
     <item

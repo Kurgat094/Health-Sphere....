@@ -14,7 +14,9 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.firestore.FirestoreClass
 import com.example.healthsphere.databinding.ActivityRegisterBinding
+import com.example.models.User
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -67,11 +69,6 @@ class RegisterActivity : BazeActivity(), View.OnClickListener, View.OnFocusChang
         sign_up.setOnClickListener {
             var signIntent: Intent = Intent(this, OTP_Activity::class.java)
             startActivity(signIntent)
-        }
-        val backbtn: LinearLayout = findViewById(R.id.backbtn)
-        backbtn.setOnClickListener{
-            var intent : Intent = Intent(this, ResetPassword::class.java)
-            startActivity(intent)
         }
         sign_up.setOnClickListener{
             registerUser()
@@ -310,23 +307,24 @@ class RegisterActivity : BazeActivity(), View.OnClickListener, View.OnFocusChang
                             //firebase registered user
                             val firebaseUser: FirebaseUser = task.result!!.user!!
 
-//                        val user = User(
-//                            firebaseUser.uid,
-//                            et_first_name.text.toString().trim(),
-//                            et_last_name.text.toString().trim(),
-//                            et_email.text.toString().trim(),
-//
-//
-//                            )
-//                        FirestoreClass().registerUser(this, user)
+                        val user = User(
+                            firebaseUser.uid,
+                            et_username.text.toString().trim(),
+                            et_phoneNo.text.toString().trim(),
+                            et_emailAdress.text.toString().trim(),
+
+
+                            )
+                        FirestoreClass().registerUser(this, user)
+                            finish()
                             Toast.makeText(this, "Success You are being redirected to Login.",Toast.LENGTH_SHORT)
                                 .show()
                             showErrorSnackBar(
                                 "you are successfully registered. Your User ID is${firebaseUser.uid}",
                                 false
                             )
-                            FirebaseAuth.getInstance().signOut()
-                            finish()
+//                            FirebaseAuth.getInstance().signOut()
+//                            finish()
                         }
                         else{
                             // if the register is not successful
@@ -338,5 +336,9 @@ class RegisterActivity : BazeActivity(), View.OnClickListener, View.OnFocusChang
                 )
         }
 
+    }
+    fun userRegistrationSucceess(){
+        hideProgressDialog()
+        Toast.makeText(this, "You have successfully Registered to our Services ", Toast.LENGTH_SHORT).show()
     }
 }

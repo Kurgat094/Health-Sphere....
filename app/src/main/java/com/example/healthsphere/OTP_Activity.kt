@@ -21,10 +21,6 @@ class OTP_Activity : AppCompatActivity() {
             val intent: Intent = Intent(this,MainActivity::class.java )
             startActivity(intent)
         }
-        goBack.setOnClickListener{
-            var gobackIntent : Intent= Intent( this, ResetPassword::class.java)
-            startActivity(gobackIntent)
-        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

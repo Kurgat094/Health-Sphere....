@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.TextUtils
 import android.text.style.UnderlineSpan
+import android.util.Log
 import android.util.Patterns
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -16,8 +17,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.firestore.FirestoreClass
+import com.example.fragments.ProfileFragment
 import com.example.healthsphere.databinding.ActivityRegisterBinding
 import com.example.healthsphere.databinding.ActivitySignInBinding
+import com.example.models.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -65,6 +69,16 @@ class SignIn :  BazeActivity() {
             insets
         }
     }
+    fun userLoggedInSuccess(user: User){
+        hideProgressDialog()
+        //print user in log as for now
+        Log.i("username: ", user.userName)
+//        Log.i("PhoneNumber: ", user.mobile)
+        Log.i("email: ", user.email)
+        val intent = Intent(this@SignIn, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
     fun valideteDetails(): Boolean{
         return when {
             TextUtils.isEmpty(et_emailAdress.text.toString().trim()) ->{
@@ -88,10 +102,10 @@ class SignIn :  BazeActivity() {
             //login User Using Firebase
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
-                    hideProgressDialog()
+
                     if(task.isSuccessful){
-                        startActivity(Intent(this, MainActivity::class.java))
-                        finish()
+
+                        FirestoreClass().getUserDetails(this@SignIn)
                     }else{
                         hideProgressDialog()
                         showErrorSnackBar(task.exception!!.message.toString(), true)
