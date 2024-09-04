@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 import android.util.Log
 import com.example.healthsphere.RegisterActivity
 import com.example.healthsphere.SignIn
+import com.example.models.CartItem
+import com.example.models.Order
 import com.example.models.User
 import com.example.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -70,7 +72,6 @@ class FirestoreClass {
                         activity.userLoggedInSuccess(user)
                     }
                 }
-                //END
             }
             .addOnFailureListener {e ->
                 when(activity){
@@ -78,6 +79,135 @@ class FirestoreClass {
                         activity.hideProgressDialog()
                     }
                 }
+            }
+    }
+    // Method to check if a cart item already exists
+    fun checkCartItemExists(username: String, product: String, onSuccess: (Boolean) -> Unit, onFailure: (Exception) -> Unit) {
+        mFirestore.collection(Constants.CART)
+            .whereEqualTo("username", username)
+            .whereEqualTo("product", product)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                // Check if any document exists
+                val exists = !querySnapshot.isEmpty
+                onSuccess(exists)
+            }
+            .addOnFailureListener { e ->
+                onFailure(e)
+            }
+    }
+
+    // Existing method to add a cart item
+    fun addCartItem(cartItem: CartItem, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        mFirestore.collection(Constants.CART)
+            .add(cartItem)
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { e ->
+                Log.e("FirestoreClass", "Error adding cart item", e)
+                onFailure(e)
+            }
+    }
+
+    fun getCartItemsByUser(username: String, onSuccess: (List<CartItem>) -> Unit, onFailure: (Exception) -> Unit) {
+        mFirestore.collection(Constants.CART)
+            .whereEqualTo("username", username)
+            .get()
+            .addOnSuccessListener { result ->
+                val cartItems = result.mapNotNull { document ->
+                    document.toObject(CartItem::class.java)
+                }
+                onSuccess(cartItems)
+            }
+            .addOnFailureListener { e ->
+                Log.e("FirestoreClass", "Error fetching cart items", e)
+                onFailure(e)
+            }
+    }
+    // FirestoreClass.kt
+
+    fun clearCartItems(username: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        mFirestore.collection(Constants.CART)
+            .whereEqualTo("username", username)
+            .get()
+            .addOnSuccessListener { result ->
+                val batch = mFirestore.batch()
+                for (document in result.documents) {
+                    batch.delete(document.reference)
+                }
+                batch.commit()
+                    .addOnSuccessListener {
+                        onSuccess()
+                    }
+                    .addOnFailureListener { e ->
+                        Log.e("FirestoreClass", "Error clearing cart items", e)
+                        onFailure(e)
+                    }
+            }
+            .addOnFailureListener { e ->
+                Log.e("FirestoreClass", "Error getting cart items", e)
+                onFailure(e)
+            }
+    }
+
+    fun removeCartItem(username: String, product: String, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        mFirestore.collection(Constants.CART)
+            .whereEqualTo("username", username)
+            .whereEqualTo("product", product)
+            .get()
+            .addOnSuccessListener { result ->
+                if (!result.isEmpty) {
+                    // Assuming only one document is returned
+                    val documentId = result.documents[0].id
+                    mFirestore.collection(Constants.CART)
+                        .document(documentId)
+                        .delete()
+                        .addOnSuccessListener {
+                            onSuccess()
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e("FirestoreClass", "Error removing cart item", e)
+                            onFailure(e)
+                        }
+                } else {
+                    // Handle case where item was not found
+                    Log.w("FirestoreClass", "No matching cart item found")
+                    onSuccess()  // Consider calling onFailure() or providing feedback to user
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("FirestoreClass", "Error checking cart item for removal", e)
+                onFailure(e)
+            }
+    }
+    fun placeOrder(order: Order, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        mFirestore.collection("orders")
+            .add(order)
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { e ->
+                Log.e("FirestoreClass", "Error placing order", e)
+                onFailure(e)
+            }
+    }
+
+
+
+    fun getCartItemsByUserId(userId: String, onSuccess: (List<CartItem>) -> Unit, onFailure: (Exception) -> Unit) {
+        mFirestore.collection(Constants.CART)
+            .whereEqualTo("userId", userId)
+            .get()
+            .addOnSuccessListener { result ->
+                val cartItems = result.mapNotNull { document ->
+                    document.toObject(CartItem::class.java)
+                }
+                onSuccess(cartItems)
+            }
+            .addOnFailureListener { e ->
+                Log.e("FirestoreClass", "Error fetching cart items", e)
+                onFailure(e)
             }
     }
 }

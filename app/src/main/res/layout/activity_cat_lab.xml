@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/blue_1"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LabTestDetailsActivity">
+
+    <LinearLayout
+        android:layout_marginTop="6dp"
+        android:layout_width="50dp"
+        android:id="@+id/backbtn"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:background="@drawable/backbtn"
+        >
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:src="@drawable/arrow_back"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/backbtn"
+        android:layout_alignParentStart="true"
+        android:layout_margin="5dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="-2dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp">
+
+        <TextView
+            android:id="@+id/tvFindDocTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingTop="2dp"
+            android:text="Health Sphere"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.027" />
+
+        <TextView
+            android:id="@+id/tvTittle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvFindDocTop"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:text="Lab Test"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+        <EditText
+            android:id="@+id/lvtestDetails"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_below="@+id/tvTittle"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/whatsapp_grey"
+            android:paddingLeft="4dp"
+            android:text="details" />
+
+        <TextView
+            android:id="@+id/totalCost"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/lvtestDetails"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:text="Total Cost"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="normal" />
+
+        <LinearLayout
+            android:id="@+id/dateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/totalCost"
+            android:layout_gravity="center"
+            android:background="@color/whatsapp_grey"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/time_et"
+                style="?android:spinnerStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="10:00"
+                android:textColor="@color/black"
+                tools:layout_editor_absoluteX="570dp" />
+
+            <Button
+                android:id="@+id/dateEditText"
+                style="?android:spinnerStyle"
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:padding="5dp"
+                android:text="10/9/2024"
+                android:textColor="@color/black"
+                tools:layout_editor_absoluteX="570dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/cartCheckout"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/dateTime"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="106dp"
+            android:background="@color/blue"
+            android:gravity="center"
+            android:text="Checkout"
+            android:textColor="@color/white"
+            android:textSize="22dp" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -77,13 +77,14 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
+                        android:id="@+id/doctorsCard"
                         android:layout_height="match_parent">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/clothingName"
-                            android:text="Hospitals"
+                            android:text="Doctors"
                             android:textSize="20sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/poppins_medium"
@@ -113,13 +114,14 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
+                        android:id="@+id/labtest"
                         android:layout_height="match_parent">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/elecName"
-                            android:text="Doctors"
+                            android:text="Lab Test"
                             android:textSize="20sp"
                             android:textColor="@color/black"
                             android:fontFamily="@font/poppins_medium"
