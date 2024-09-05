@@ -1,10 +1,13 @@
-package com.example.healthsphere
+package com.example.Adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.healthsphere.R
+import com.example.healthsphere.WorkoutItemModel
+
 class AdapterClass(private val dataList: ArrayList<WorkoutItemModel>):RecyclerView.Adapter<AdapterClass.ViewHolderClass>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderClass {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_workout_layout, parent, false)

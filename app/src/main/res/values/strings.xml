@@ -1,4 +1,6 @@
 <resources>
+
+
     <string name="app_name">Health Sphere</string>
     <string name="nav_open">Open navigation Drawer</string>
     <string name="nav_close">close navigation Drawer</string>
@@ -41,8 +43,6 @@
     <string name="heading_three">Experience Hassle-Free Cashless Payments</string>
     <string name="heading_fourth">Pay Seamlessly Anytime, Anywhere</string>
 
-
-    <!--    //Description-->
     <!-- Description strings -->
     <string name="desc_one">Discover a world of health information right at your fingertips. Easily navigate through our app to find top-rated healthcare services near you and stay up-to-date with the latest health tips and news.</string>
     <string name="desc_two">Receive timely notifications for health updates and alerts. Stay informed about important health events and never miss out on essential information that matters to you.</string>
@@ -52,6 +52,13 @@
     <string name="image_description">Image showing various features. Slide number %1$d</string>
     <string name="heading_description">Heading for slide number %1$d</string>
     <string name="description_description">Description for slide number %1$d</string>
-
+    <string name="category_prompt">Select Category</string>
+    <string-array name="doctor_categories">
+        <item>Family Physician</item>
+        <item>Dentist</item>
+        <item>Optician</item>
+        <item>Surgeon</item>
+        <item>Pharmacy</item>
+    </string-array>
 
 </resources>

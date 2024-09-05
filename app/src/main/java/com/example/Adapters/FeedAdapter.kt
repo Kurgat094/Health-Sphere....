@@ -2,13 +2,10 @@ package com.example.recyclerview
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.healthsphere.Feeds
 import com.example.healthsphere.R
-import com.example.healthsphere.WorkoutItemModel
 import com.google.android.material.imageview.ShapeableImageView
 
 class FeedAdapterClass(private val dataList1: ArrayList<Feeds>):RecyclerView.Adapter<FeedAdapterClass.ViewHolderClass>() {

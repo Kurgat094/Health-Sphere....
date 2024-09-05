@@ -5,7 +5,11 @@ import android.content.SharedPreferences
 import android.util.Log
 import com.example.healthsphere.RegisterActivity
 import com.example.healthsphere.SignIn
+import com.example.models.Appointment
 import com.example.models.CartItem
+import com.example.models.Doctor
+import com.example.models.DoctorBooking
+import com.example.models.Medicine
 import com.example.models.Order
 import com.example.models.User
 import com.example.utils.Constants
@@ -95,6 +99,84 @@ class FirestoreClass {
             .addOnFailureListener { e ->
                 onFailure(e)
             }
+    }
+    fun addDrug(
+        drugName: String,
+        price: String,
+        description: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        val drugItem = Medicine(
+            drugName = drugName,
+            price = price,
+            description = description
+        )
+
+        mFirestore.collection(Constants.DRUG)  // Make sure Constants.DRUG points to the correct collection
+            .add(drugItem)
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { e ->
+                Log.i("FirestoreClass", "Error adding drug to db", e)
+                onFailure(e)
+            }
+    }
+    fun addDoctor(doctor: Doctor, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+        val firestore = FirebaseFirestore.getInstance()
+        firestore.collection("doctors")
+            .add(doctor)
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { e ->
+                onFailure(e)
+            }
+    }
+
+
+    private val db = FirebaseFirestore.getInstance()
+    fun getDoctorBookingsForUser(username: String, onSuccess: (List<DoctorBooking>) -> Unit, onFailure: (Exception) -> Unit) {
+        db.collection("appointments")
+            .whereEqualTo("username", username)
+            .get()
+            .addOnSuccessListener { result ->
+                val bookings = mutableListOf<DoctorBooking>()
+                for (document in result) {
+                    val booking = document.toObject(DoctorBooking::class.java)
+                    bookings.add(booking)
+                }
+                onSuccess(bookings)
+            }
+            .addOnFailureListener { e ->
+                onFailure(e)
+            }
+    }
+
+    fun getAppointmentsForDoctor(doctorName: String, onSuccess: (List<Appointment>) -> Unit, onFailure: (Exception) -> Unit) {
+        db.collection("appointments")
+            .whereEqualTo("doctorName", doctorName)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                val appointments = querySnapshot.toObjects(Appointment::class.java)
+                onSuccess(appointments)
+            }
+            .addOnFailureListener { e ->
+                onFailure(e)
+            }
+    }
+
+    fun addDrugmine(drugItem: Medicine, onSuccess: () -> Unit, onFailure: (Exception) -> Unit){
+        mFirestore.collection(Constants.DRUG)
+            .add(drugItem) .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener{e ->
+                Log.i("FirestoreClass", "Error adding drugs to db", e)
+                onFailure(e)
+            }
+
     }
 
     // Existing method to add a cart item
@@ -192,9 +274,37 @@ class FirestoreClass {
                 onFailure(e)
             }
     }
+    fun getOrdersForUser(username: String, onSuccess: (List<Order>) -> Unit, onFailure: (Exception) -> Unit) {
+        mFirestore.collection("orders")
+            .whereEqualTo("username", username)
+            .get()
+            .addOnSuccessListener { result ->
+                val orders = result.mapNotNull { document ->
+                    document.toObject(Order::class.java)
+                }
+                onSuccess(orders)
+            }
+            .addOnFailureListener { e ->
+                onFailure(e)
+            }
+    }
 
 
-
+    fun getUserOrders(username: String, onSuccess: (List<Order>) -> Unit, onFailure: (Exception) -> Unit) {
+        mFirestore.collection("orders")
+            .whereEqualTo("username", username)
+            .get()
+            .addOnSuccessListener { result ->
+                val orders = result.mapNotNull { document ->
+                    document.toObject(Order::class.java)
+                }
+                onSuccess(orders)
+            }
+            .addOnFailureListener { e ->
+                Log.e("FirestoreClass", "Error fetching orders", e)
+                onFailure(e)
+            }
+    }
     fun getCartItemsByUserId(userId: String, onSuccess: (List<CartItem>) -> Unit, onFailure: (Exception) -> Unit) {
         mFirestore.collection(Constants.CART)
             .whereEqualTo("userId", userId)

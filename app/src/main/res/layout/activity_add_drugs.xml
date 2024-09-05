@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.drugs.AddDrugsActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/etDrugName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Drug Name" />
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description"
+                android:minLines="3" />
+            <EditText
+                android:id="@+id/etPrice"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Price"
+                android:inputType="numberDecimal" />
+
+            <Button
+                android:id="@+id/btnChooseImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose Image" />
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Add Drug" />
+
+
+            <EditText
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:inputType="text"
+                android:layout_marginTop="40dp"
+                android:id="@+id/etDoctorName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Doctor Name" />
+
+            <EditText
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:inputType="text"
+                android:id="@+id/etDoctorAddress"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Hospital Address" />
+
+            <EditText
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:inputType="number"
+                android:id="@+id/etDoctorExperience"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Experience (Years)" />
+
+            <EditText
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:inputType="textEmailAddress"
+                android:id="@+id/etDoctorMobile"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="email Id" />
+
+            <EditText
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:id="@+id/etDoctorFees"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="Consultation Fees" />
+            <Spinner
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:id="@+id/spinnerCategory"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:prompt="@string/category_prompt" />
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:id="@+id/btnAddDoctor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Doctor" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

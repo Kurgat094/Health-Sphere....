@@ -8,6 +8,7 @@ class User (
     val image: String = "",
     val gender: String = "",
     val profileCompleted: Int = 1,
+    val role: String = "user"
 )
 
 

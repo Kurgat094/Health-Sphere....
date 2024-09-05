@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.healthsphere.AdapterClass
+import com.example.Adapters.AdapterClass
 import com.example.healthsphere.R
 import com.example.healthsphere.WorkoutItemModel
 

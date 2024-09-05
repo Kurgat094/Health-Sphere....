@@ -6,19 +6,20 @@ import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.fragments.HomeFragment
+
+import com.example.models.Doctor
+import com.google.firebase.firestore.FirebaseFirestore
 
 class FindDoctors : AppCompatActivity() {
     private lateinit var backbtn: LinearLayout
     private lateinit var cardFindFamDoc: CardView
     private lateinit var cardDentist: CardView
-    private lateinit var cardSergion : CardView
-    private lateinit var cardOptician : CardView
-    private lateinit var Dietician : CardView
+    private lateinit var cardSergion: CardView
+    private lateinit var cardOptician: CardView
+    private lateinit var Dietician: CardView
     private lateinit var Cardphamacy: CardView
 
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,44 +37,56 @@ class FindDoctors : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
         Cardphamacy.setOnClickListener {
-            val pharmacyIntent = Intent(this, DoctorDetails::class.java)
-            pharmacyIntent.putExtra("title", "Pharmacy")
-            startActivity(pharmacyIntent)
+            fetchDoctors("Pharmacy")
         }
 
         cardSergion.setOnClickListener {
-            val surgeonIntent = Intent(this, DoctorDetails::class.java)
-            surgeonIntent.putExtra("title", "Surgeon")
-            startActivity(surgeonIntent)
+            fetchDoctors("Surgeon")
         }
 
+        cardOptician.setOnClickListener {
+            fetchDoctors("Optician")
+        }
 
+        cardDentist.setOnClickListener {
+            fetchDoctors("Dentist")
+        }
 
-        Dietician.setOnClickListener{
-            val activityintent = Intent(this, DoctorDetails::class.java)
-            activityintent.putExtra("title", "Dietician")
-            startActivity(activityintent)
+        cardFindFamDoc.setOnClickListener {
+            fetchDoctors("Family Physician")
         }
-        cardDentist.setOnClickListener{
-            val dentistintent = Intent(this, DoctorDetails::class.java)
-            dentistintent.putExtra("title", "Dentist specialist")
-            startActivity(dentistintent)
-        }
-        cardFindFamDoc.setOnClickListener{
-            val famdocintent = Intent(this, DoctorDetails::class.java)
-            famdocintent.putExtra("title", "family physisian")
-            startActivity(famdocintent)
-        }
-        cardOptician.setOnClickListener{
-            val actityintent = Intent(this, DoctorDetails::class.java)
-            actityintent.putExtra("title", "Opticle unit")
-            startActivity(actityintent)
-        }
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+    }
+
+    private fun fetchDoctors(category: String) {
+        db.collection("doctors")
+            .whereEqualTo("category", category)
+            .get()
+            .addOnSuccessListener { result ->
+                val doctorDetails = result.map { document ->
+                    val doctor = document.toObject(Doctor::class.java)
+                    arrayOf(
+//                        doctor.name,
+//                        doctor.address,
+//                        doctor.experience,
+//                        doctor.mobile,
+//                        doctor.fees
+                        "Doctor Name: ${doctor.name}",
+                        "Hospital Address: ${doctor.address}",
+                        "Exp: ${doctor.experience}",
+                        " ${doctor.email}",
+                        "Charges: ${doctor.fees}"
+                    )
+                }.toTypedArray()
+
+                val intent = Intent(this, DoctorDetails::class.java)
+                intent.putExtra("title", category)
+                intent.putExtra("doctorDetails", doctorDetails)
+                startActivity(intent)
+            }
+            .addOnFailureListener { exception ->
+                // Handle the error
+            }
     }
 }

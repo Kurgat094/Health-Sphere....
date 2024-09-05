@@ -3,6 +3,7 @@ package com.example.healthsphere
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
@@ -46,6 +47,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val sharedPreferences = getSharedPreferences(Constants.HEALTHAPP_PREFERENCES, Context.MODE_PRIVATE)
         val username = sharedPreferences.getString(Constants.LOGGED_IN_USERNAME, "")!!
+
+//        val editor = sharedPreferences.edit()
+//        editor.putString("role", "Doctor") // or the appropriate role value
+//        editor.apply()
         toolbar_title.text = "Welcome $username."
         // Apply window insets to toolbar to ensure it doesn't overlap with the system UI
         ViewCompat.setOnApplyWindowInsetsListener(binding.toolbar) { view, insets ->
@@ -71,11 +76,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 R.id.bottom_home -> openFragment(HomeFragment())
                 R.id.workouts -> openFragment(WorkoutFragment())
                 R.id.feed -> openFragment(FeedFragment())
-                R.id.Community ->openFragment(CommunityFragment())
+                R.id.Community -> {
+                    val userRole = sharedPreferences.getString("role", "")
+
+                    if (userRole.equals("Doctor", ignoreCase = true)) {
+                        // Open doctor page
+                        val intent = Intent(this, DoctorDashboardActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        // Handle other roles or show error
+                        Toast.makeText(this, "Access denied", Toast.LENGTH_SHORT).show()
+                    }
+                    Log.d("UserRole", "Role: $userRole")
+
+
+                }
             }
             true
         }
-
         // Ensure no item is selected initially
         fragmentmanager = supportFragmentManager
         openFragment(HomeFragment())
@@ -102,7 +120,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
-
     override fun onBackPressed() {
         if(binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
             binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -112,7 +129,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
     }
-
     private fun openFragment(fragment: Fragment){
         val fragmentTransaction: FragmentTransaction = fragmentmanager.beginTransaction()
         fragmentTransaction.replace(R.id.fragment_container, fragment)
