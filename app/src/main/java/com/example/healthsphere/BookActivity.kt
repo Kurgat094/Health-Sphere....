@@ -20,7 +20,7 @@ import java.util.Calendar
 import java.util.Locale
 
 
-class BookActivity : AppCompatActivity() {
+class BookActivity : BazeActivity() {
     private lateinit var backbtn: LinearLayout
     private lateinit var tv: TextView
     private lateinit var  appointmentButton: Button
@@ -39,7 +39,7 @@ class BookActivity : AppCompatActivity() {
         setContentView(R.layout.activity_book)
         backbtn= findViewById(R.id.backbtn)
         tv = findViewById(R.id.tv_title)
-        ed1 = findViewById(R.id.uploadName)
+        ed1 = findViewById(R.id.uploadEmail)
         ed2 = findViewById(R.id.et_address)
         ed3 = findViewById(R.id.et_email)
         ed4 = findViewById(R.id.et_fees)
@@ -102,18 +102,18 @@ class BookActivity : AppCompatActivity() {
 
 // Get Intent and extract data
         val intent = intent
-        val title = intent.getStringExtra("text1") ?: ""
-        val fullname = intent.getStringExtra("text2") ?: ""
+        val name = intent.getStringExtra("text1") ?: ""
+        val email = intent.getStringExtra("text2") ?: ""
         val address = intent.getStringExtra("text3") ?: ""
-        val contact = intent.getStringExtra("text4") ?: ""
+//        val exp = intent.getStringExtra("text4") ?: ""
         val fees = intent.getStringExtra("text5") ?: ""
 
 // Set the extracted data to the views
-        tv.text = title
-        ed1.setText(fullname)
+        tv.text = name
+        ed1.setText(email)
         ed2.setText(address)
-        ed3.setText(contact)
-        ed4.setText("Fees: $fees")
+//        ed3.setText(exp)
+        ed4.setText(fees)
         backbtn.setOnClickListener{
             val backintent = Intent(this, FindDoctors::class.java)
             startActivity(backintent)
@@ -121,17 +121,18 @@ class BookActivity : AppCompatActivity() {
 
         appointmentButton.setOnClickListener {
             // Collect appointment details
-            val name = ed1.text.toString()
+            val name = tv.text.toString()
+            val email = ed1.text.toString()
             val address = ed2.text.toString()
-            val email = ed3.text.toString()
+//            val exp = ed3.text.toString()
             val fees = ed4.text.toString()
             val date = dateButton.text.toString()
             val time = timeButton.text.toString()
 
             // Get username from shared preferences
             val sharedPreferences = getSharedPreferences(Constants.HEALTHAPP_PREFERENCES, MODE_PRIVATE)
+            val useremail = sharedPreferences.getString(Constants.LOGGED_IN_USEREMAIL, "") ?: ""
             val username = sharedPreferences.getString(Constants.LOGGED_IN_USERNAME, "") ?: ""
-
             // Check for existing appointments
             val appointmentQuery = db.collection("appointments")
                 .whereEqualTo("date", date)
@@ -143,21 +144,28 @@ class BookActivity : AppCompatActivity() {
                         // No existing appointments, proceed with adding the new one
                         val appointment = hashMapOf(
                             "name" to name,
-                            "address" to address,
                             "email" to email,
+                            "address" to address,
+//                            "exp" to exp,
                             "fees" to fees,
                             "date" to date,
                             "time" to time,
-                            "username" to username // Add username here
+                            "username" to username,
+                            "userEmail" to useremail,
+                            "completed" to false
                         )
 
                         db.collection("appointments")
                             .add(appointment)
                             .addOnSuccessListener {
                                 // Handle success, maybe show a message
+                                val detIntent = Intent(this, OrderDetActivity::class.java)
+                                startActivity(detIntent)
+                                showProgressDialog(resources.getString(R.string.please_wait))
                                 Toast.makeText(this, "Appointment booked successfully", Toast.LENGTH_SHORT).show()
                             }
                             .addOnFailureListener {
+
                                 // Handle failure, maybe show an error message
                                 Toast.makeText(this, "Failed to book appointment", Toast.LENGTH_SHORT).show()
                             }

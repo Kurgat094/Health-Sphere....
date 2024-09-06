@@ -26,52 +26,45 @@ class DoctorDetails : AppCompatActivity() {
 
         val title = intent.getStringExtra("title")
         val doctorDetails = intent.getSerializableExtra("doctorDetails") as? Array<Array<String>> ?: arrayOf()
-
         tvTittle.text = title
-
         val list: MutableList<Map<String, String>> = ArrayList()
         for (i in doctorDetails.indices) {
             val item: MutableMap<String, String> = HashMap()
             item["line1"] = doctorDetails[i][0]
             item["line2"] = doctorDetails[i][1]
             item["line3"] = doctorDetails[i][2]
-            item["line4"] = doctorDetails[i][3]
-            item["line5"] = doctorDetails[i][4]
+            item["line6"] =doctorDetails[i][3]
+            item["line5"] =doctorDetails[i][4]
             list.add(item)
         }
-
         val adapter = SimpleAdapter(
             this,
             list,
             R.layout.multilines,
-            arrayOf("line1", "line2", "line3", "line4", "line5"),
-            intArrayOf(R.id.line1, R.id.line2, R.id.line3, R.id.line4, R.id.line5)
+            arrayOf("line1", "line2", "line3", "line6", "line5"),
+            intArrayOf(R.id.line1, R.id.line2, R.id.line3, R.id.line6, R.id.line5)
         )
-
         val listView: ListView = findViewById(R.id.listviewdocdetails)
         listView.adapter = adapter
-
         listView.setOnItemClickListener { _, _, position, _ ->
             val selectedItem = list[position]
             val doctorName = selectedItem["line1"] ?: "Unknown"
             val address = selectedItem["line2"] ?: ""
-            val contact = selectedItem["line3"] ?: ""
+            val exp = selectedItem["line3"] ?: ""
+            val email = selectedItem["line6"] ?: ""
             val fees = selectedItem["line5"] ?: ""
-
             val intent = Intent(this, BookActivity::class.java)
-            intent.putExtra("text1", "Appointments")
-            intent.putExtra("text2", doctorName)
+            intent.putExtra("text1", doctorName )
+            intent.putExtra("text2", email)
             intent.putExtra("text3", address)
-            intent.putExtra("text4", contact)
+            intent.putExtra("text4", exp)
             intent.putExtra("text5", fees)
             startActivity(intent)
         }
-
         backbtn.setOnClickListener {
             val backintent = Intent(this, FindDoctors::class.java)
             startActivity(backintent)
         }
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)

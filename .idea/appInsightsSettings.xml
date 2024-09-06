@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.healthsphere" />
+                  <option name="mobileSdkAppId" value="1:783944376406:android:052050527196bba2fe1bf7" />
+                  <option name="projectId" value="health-sphere-b7e27" />
+                  <option name="projectNumber" value="783944376406" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

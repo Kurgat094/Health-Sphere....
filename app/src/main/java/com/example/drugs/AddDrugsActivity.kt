@@ -111,6 +111,7 @@ class AddDrugsActivity : AppCompatActivity() {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
             return
         }
+
         val doctor = Doctor(
             name = name,
             address = address,

@@ -18,10 +18,10 @@
             <TextView
                 android:id="@+id/amazonName"
                 android:layout_width="0dp"
-                android:layout_height="42dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_light"
+                android:fontFamily="@font/poppins_thick"
                 android:text="Health Sphere"
                 android:textColor="@color/blue"
                 android:textSize="40sp"
@@ -36,7 +36,9 @@
                 android:text="24hr health coverage"
                 android:textSize="14sp"
                 android:layout_marginStart="18dp"
+                android:layout_marginTop="4dp"
                 android:textColor="@color/blue"
+                android:fontFamily="@font/poppins_light"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/amazonName"
                 app:layout_constraintEnd_toStartOf="@+id/amazonImage"/>
@@ -261,7 +263,6 @@
                             android:layout_marginTop="10dp"
                             android:layout_centerHorizontal="true"
                             android:layout_below="@+id/pharmImage"/>
-
                         <ImageView
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -269,7 +270,6 @@
                             android:src="@drawable/doctor_stethoscope"
                             android:layout_marginTop="15dp"
                             android:layout_centerHorizontal="true"/>
-
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
 

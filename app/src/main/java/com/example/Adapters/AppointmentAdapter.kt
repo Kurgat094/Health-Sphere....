@@ -4,34 +4,43 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.TextView
-import android.widget.BaseAdapter
-import com.example.healthsphere.R
+import androidx.core.content.ContextCompat
 import com.example.models.Appointment
+import com.example.healthsphere.R
 
-class AppointmentAdapter(private val context: Context, private val appointments: List<Appointment>) : BaseAdapter() {
-
-    override fun getCount(): Int = appointments.size
-
-    override fun getItem(position: Int): Appointment = appointments[position]
-
-    override fun getItemId(position: Int): Long = position.toLong()
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.multilinestv2, parent, false)
-
+class AppointmentAdapter(private val context: Context, private val appointments: List<Appointment>) :
+        ArrayAdapter<Appointment>(context, 0, appointments) {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_appointment, parent, false)
         val appointment = getItem(position)
 
-        // Populate the view with appointment data
-        val tvPatientName = view.findViewById<TextView>(R.id.line1)
-        val tvAppointmentTime = view.findViewById<TextView>(R.id.line3)
-        val tvAppointmentDate = view.findViewById<TextView>(R.id.line4)
-        val tvAppointmentFees = view.findViewById<TextView>(R.id.line5)
+//    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+//        val appointment = getItem(position)
+//        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_appointment, parent, false)
 
-        tvPatientName.text = "Patient: ${appointment.patientName}"
-        tvAppointmentTime.text = "Time: ${appointment.time}"
-        tvAppointmentDate.text = "Date: ${appointment.date}"
-        tvAppointmentFees.text = "Fees: Ksh ${appointment.fees}"
+        val tvDate = view.findViewById<TextView>(R.id.tvDate)
+        val tvTime = view.findViewById<TextView>(R.id.tvTime)
+        val tvFees = view.findViewById<TextView>(R.id.tvFees)
+        val Email = view.findViewById<TextView>(R.id.Email)
+        val tvName = view.findViewById<TextView>(R.id.tvAppointmentName)
+        val tvStatus = view.findViewById<TextView>(R.id.tvAppointmentStatus)
+        //val username = view.findViewById<TextView>(R.id.tvFees)
+        Email.text = appointment?.userEmail
+        tvDate.text = appointment?.date
+        tvTime.text = appointment?.time
+        tvFees.text = "Fees: Ksh ${appointment?.fees}"
+
+        tvName.text = appointment?.name
+        val isCompleted = appointment?.completed ?: false
+        if (isCompleted) {
+            tvStatus.text = "Completed"
+            tvStatus.setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_red_dark))
+        } else {
+            tvStatus.text = "Active"
+            tvStatus.setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_green_dark))
+        }
 
         return view
     }

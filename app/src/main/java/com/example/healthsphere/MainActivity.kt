@@ -88,8 +88,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                         Toast.makeText(this, "Access denied", Toast.LENGTH_SHORT).show()
                     }
                     Log.d("UserRole", "Role: $userRole")
-
-
                 }
             }
             true

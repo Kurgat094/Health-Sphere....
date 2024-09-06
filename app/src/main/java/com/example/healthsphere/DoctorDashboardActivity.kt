@@ -2,24 +2,27 @@ package com.example.healthsphere
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.Adapters.AppointmentAdapter
-import com.example.firestore.FirestoreClass
 import com.example.models.Appointment
 import com.example.utils.Constants
+import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DoctorDashboardActivity : AppCompatActivity() {
     private lateinit var tvTotalFees: TextView
     private lateinit var lvAppointments: ListView
-    private lateinit var backbtn : LinearLayout
-
+    private lateinit var backbtn: LinearLayout
+    private val db = FirebaseFirestore.getInstance()
+    private val handler = Handler()
+    private val refreshInterval: Long = 60000 // 60 seconds
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,31 +32,142 @@ class DoctorDashboardActivity : AppCompatActivity() {
         lvAppointments = findViewById(R.id.lvAppointments)
         backbtn = findViewById(R.id.backbtn)
         backbtn.setOnClickListener {
-            val backint  = Intent(this, MainActivity::class.java)
-            startActivity(backint)
+            val backIntent = Intent(this, MainActivity::class.java)
+            startActivity(backIntent)
         }
 
-        val doctorName = getLoggedInDoctorName()
-        FirestoreClass().getAppointmentsForDoctor(doctorName, { appointments ->
-            setupAppointmentsList(appointments)
-            calculateTotalFees(appointments)
-        }, { e ->
-            Toast.makeText(this, "Failed to load appointments: ${e.message}", Toast.LENGTH_SHORT).show()
-        })
+        // Fetch appointments and update UI
+        fetchAppointmentsForDoctor()
+
+        // Schedule periodic updates
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                fetchAppointmentsForDoctor()
+                handler.postDelayed(this, refreshInterval)
+            }
+        }, refreshInterval)
     }
 
-    private fun getLoggedInDoctorName(): String {
+    private fun fetchAppointmentsForDoctor() {
+
+        val doctorEmail = getLoggedInDoctorEmail()
+        val currentTime = System.currentTimeMillis()
+
+        db.collection("appointments")
+            .whereEqualTo("email", doctorEmail)
+            .whereEqualTo("completed", false) // Only fetch incomplete appointments
+            .get()
+            .addOnSuccessListener { documents ->
+                var totalFees = 0
+                val appointments = mutableListOf<Appointment>()
+
+                for (document in documents) {
+                    val appointment = document.toObject(Appointment::class.java)
+                    appointment.id = document.id // Set the document ID to the appointment object
+                    val appointmentTimestamp = convertToTimestamp(appointment.date, appointment.time)
+                    if (currentTime > appointmentTimestamp) {
+                        markAppointmentComplete(document.id)
+                    } else {
+                        appointments.add(appointment)
+                        totalFees += appointment.fees.toIntOrNull() ?: 0
+                    }
+                }
+
+                tvTotalFees.text = "Total Fees: Ksh $totalFees"
+                val adapter = AppointmentAdapter(this, appointments)
+                lvAppointments.adapter = adapter
+
+                // Set a long click listener to delete completed appointments
+                lvAppointments.setOnItemLongClickListener { parent, view, position, id ->
+                    val appointment = appointments[position]
+                    if (appointment.completed) {
+                        deleteAppointment(appointment.id)
+                    } else {
+                        Toast.makeText(this, "Cannot delete active appointments", Toast.LENGTH_SHORT).show()
+                    }
+                    true
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("FirestoreError", "Error getting documents: ", exception)
+            }
+    }
+//        val doctorEmail = getLoggedInDoctorEmail() // Get the logged-in doctor's email
+//        val currentTime = System.currentTimeMillis()
+//        db.collection("appointments")
+//            .whereEqualTo("email", doctorEmail)
+//            .whereEqualTo("completed", false)
+//            .get()
+//            .addOnSuccessListener { documents ->
+//                if (documents.isEmpty) {
+//                    Log.d("FirestoreDebug", "No appointments found for doctor.")
+//                }
+//                var totalFees = 0
+//                val appointments = mutableListOf<Appointment>()
+//
+//                for (document in documents) {
+//                    val appointment = document.toObject(Appointment::class.java)
+//                    Log.d("FirestoreDebug", "Fetched appointment: ${appointment}")
+//
+//                    val appointmentTimestamp = convertToTimestamp(appointment.date, appointment.time)
+//                    if (currentTime > appointmentTimestamp) {
+//                        markAppointmentComplete(document.id)
+//                    } else {
+//                        appointments.add(appointment)
+//                        totalFees += appointment.fees.toIntOrNull() ?: 0
+//                    }
+//                }
+//
+//                tvTotalFees.text = "Total Fees: Ksh $totalFees"
+//                lvAppointments.adapter = AppointmentAdapter(this, appointments)
+//            }
+//            .addOnFailureListener { exception ->
+//                Log.w("FirestoreError", "Error getting documents: ", exception)
+//            }
+//
+//    }
+    private fun deleteAppointment(appointmentId: String) {
+        db.collection("appointments").document(appointmentId)
+            .delete()
+            .addOnSuccessListener {
+                Toast.makeText(this, "Appointment deleted successfully", Toast.LENGTH_SHORT).show()
+                fetchAppointmentsForDoctor() // Refresh the list
+            }
+            .addOnFailureListener { e ->
+                Log.w("FirestoreError", "Error deleting document", e)
+            }
+    }
+
+    // Function to convert appointment date and time to timestamp
+    private fun convertToTimestamp(date: String, time: String): Long {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+        val dateTime = "$date $time"
+        return try {
+            val parsedDate = dateFormat.parse(dateTime)
+            parsedDate?.time ?: 0L
+        } catch (e: Exception) {
+            e.printStackTrace()
+            0L
+        }
+    }
+
+
+    // Mark appointment as complete
+    private fun markAppointmentComplete(appointmentId: String) {
+        db.collection("appointments").document(appointmentId)
+            .update("completed", true)
+            .addOnSuccessListener {
+                Log.d("FirestoreSuccess", "Appointment marked as complete.")
+                fetchAppointmentsForDoctor() // Refresh appointments
+            }
+            .addOnFailureListener { e ->
+                Log.w("FirestoreError", "Error updating document", e)
+            }
+    }
+
+    private fun getLoggedInDoctorEmail(): String {
         val sharedPreferences = getSharedPreferences(Constants.HEALTHAPP_PREFERENCES, MODE_PRIVATE)
-        return sharedPreferences.getString(Constants.LOGGED_IN_USERNAME, "") ?: ""
+        return sharedPreferences.getString(Constants.LOGGED_IN_USEREMAIL, "") ?: ""
     }
 
-    private fun setupAppointmentsList(appointments: List<Appointment>) {
-        val adapter = AppointmentAdapter(this, appointments)
-        lvAppointments.adapter = adapter
-    }
-
-    private fun calculateTotalFees(appointments: List<Appointment>) {
-        val totalFees = appointments.sumOf { it.fees.toDouble() }
-        tvTotalFees.text = "Total Fees: Ksh $totalFees"
-    }
 }

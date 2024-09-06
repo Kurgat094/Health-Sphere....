@@ -17,7 +17,7 @@ import com.example.firestore.FirestoreClass
 import com.example.models.Order
 import com.example.utils.Constants
 
-class LabTestBookActivty : AppCompatActivity() {
+class LabTestBookActivty : BazeActivity() {
     private lateinit var uploadName:EditText
     private lateinit var et_address: EditText
     private lateinit var et_email : EditText
@@ -35,9 +35,18 @@ class LabTestBookActivty : AppCompatActivity() {
         bookingButton = findViewById(R.id.bookingButton)
         backbtn = findViewById(R.id.backbtn)
 
+        val sharedPreferences = getSharedPreferences(Constants.HEALTHAPP_PREFERENCES, Context.MODE_PRIVATE)
+        val username = sharedPreferences.getString(Constants.LOGGED_IN_USERNAME, "")!!
+        val userEmail = sharedPreferences.getString(Constants.LOGGED_IN_USEREMAIL, "")!!
+
         et_fees.isFocusable = false
         et_fees.isFocusableInTouchMode = false
 
+        uploadName.isFocusable = false
+        uploadName.isFocusableInTouchMode = false
+
+        et_email.isFocusable = false
+        et_email.isFocusableInTouchMode = false
 
 
         val intent = intent
@@ -46,15 +55,18 @@ class LabTestBookActivty : AppCompatActivity() {
         val price = intent.getStringExtra("price") ?: ""
 
         et_fees.text = price
+        uploadName.setText(username)
+        et_email.setText(userEmail)
+
+
         bookingButton.setOnClickListener{
-            val sharedPreferences = getSharedPreferences(Constants.HEALTHAPP_PREFERENCES, Context.MODE_PRIVATE)
-            val username = sharedPreferences.getString(Constants.LOGGED_IN_USERNAME, "")!!
+            showProgressDialog(resources.getString(R.string.please_wait))
 
             val order = Order(
                 username = username,
                 name = uploadName.text.toString(),
                 address = et_address.text.toString(),
-                email = et_email.text.toString(),
+                email = userEmail,
                 date = date,
                 time = time,
                 price = price
@@ -64,6 +76,8 @@ class LabTestBookActivty : AppCompatActivity() {
             FirestoreClass().placeOrder(order,
                 onSuccess = {
                     // Order placed successfully
+                    hideProgressDialog()
+                    val homeIntent = Intent(this, MainActivity::class.java)
                     Toast.makeText(this, "Booking is done successfully", Toast.LENGTH_SHORT).show()
 
                     // Clear cart items
@@ -84,6 +98,7 @@ class LabTestBookActivty : AppCompatActivity() {
                             Toast.makeText(this, "Failed to clear cart. Please try again.", Toast.LENGTH_SHORT).show()
                         }
                     )
+                    startActivity(homeIntent)
                 },
                 onFailure = { e ->
                     // Handle failure

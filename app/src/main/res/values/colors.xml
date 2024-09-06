@@ -15,7 +15,7 @@
     <color name="buttontext">#50C2C9</color>
     <color name="sucess_message">#008000</color>
     <color name="error_message">#F60707</color>
-
+    <color name="textcolyellow">#544301</color>
     //indicator color
     <color name="active">#01105F</color>
     <color name="inactive">#C4C4C4</color>

@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/transparent"
         android:text="SKIP"
+        android:fontFamily="@font/poppins_thick"
         android:textColor="@color/blue_1"
         android:textStyle="bold"
         android:textSize="25sp"

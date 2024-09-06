@@ -42,8 +42,6 @@ tools:context=".BookActivity">
         android:textColor="@color/blue"
         android:textStyle="italic"
         android:layout_marginTop="5dp"/>
-
-
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -51,11 +49,12 @@ tools:context=".BookActivity">
     android:layout_marginTop="4dp"
     android:layout_gravity="center_horizontal"
     android:padding="20dp">
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:id="@+id/uploadName"
+        android:id="@+id/uploadEmail"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/baseline_email_24"
         android:background="@drawable/lavender_border"
         android:layout_marginTop="5dp"
         android:padding="16dp"
@@ -64,7 +63,6 @@ tools:context=".BookActivity">
         android:layout_marginEnd="10dp"
         android:gravity="start|center_vertical"
         android:textColor="@color/black"/>
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -87,11 +85,10 @@ tools:context=".BookActivity">
         android:background="@drawable/lavender_border"
         android:layout_marginTop="20dp"
         android:padding="16dp"
-        android:drawableLeft="@drawable/baseline_email_24"
-        android:drawablePadding="10dp"
+
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:hint="Enter your Email"
+        android:hint="Years of experience"
         android:gravity="start|center_vertical"
         android:textColor="@color/black"/>
 
@@ -106,7 +103,7 @@ tools:context=".BookActivity">
         android:layout_marginEnd="10dp"
         android:hint="Amount"
         android:gravity="start|center_vertical"
-        android:textColor="@color/black"/>
+        android:textColor="@color/textcolyellow"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

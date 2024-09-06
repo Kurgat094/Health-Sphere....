@@ -66,8 +66,9 @@ class FirestoreClass {
                 //key : logged_in_username
                 //value: Username
                 editor.putString(
-                    Constants.LOGGED_IN_USERNAME, "${user.userName}"
+                    Constants.LOGGED_IN_USERNAME, "${user.userName}",
                 )
+                editor.putString(Constants.LOGGED_IN_USEREMAIL, "${user.email}")
                 editor.apply()
 
                 when( activity){
@@ -123,17 +124,18 @@ class FirestoreClass {
                 onFailure(e)
             }
     }
-    fun addDoctor(doctor: Doctor, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
-        val firestore = FirebaseFirestore.getInstance()
-        firestore.collection("doctors")
-            .add(doctor)
-            .addOnSuccessListener {
-                onSuccess()
-            }
-            .addOnFailureListener { e ->
-                onFailure(e)
-            }
-    }
+
+//    fun addDoctor(doctor: Doctor, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
+//        val firestore = FirebaseFirestore.getInstance()
+//        firestore.collection("doctors")
+//            .add(doctor)
+//            .addOnSuccessListener {
+//                onSuccess()
+//            }
+//            .addOnFailureListener { e ->
+//                onFailure(e)
+//            }
+//    }
 
 
     private val db = FirebaseFirestore.getInstance()

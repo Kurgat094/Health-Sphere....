@@ -2,7 +2,9 @@ package com.example.healthsphere
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -10,7 +12,7 @@ import androidx.cardview.widget.CardView
 import com.example.models.Doctor
 import com.google.firebase.firestore.FirebaseFirestore
 
-class FindDoctors : AppCompatActivity() {
+class FindDoctors : BazeActivity() {
     private lateinit var backbtn: LinearLayout
     private lateinit var cardFindFamDoc: CardView
     private lateinit var cardDentist: CardView
@@ -60,6 +62,7 @@ class FindDoctors : AppCompatActivity() {
     }
 
     private fun fetchDoctors(category: String) {
+        showProgressDialog(resources.getString(R.string.please_wait))
         db.collection("doctors")
             .whereEqualTo("category", category)
             .get()
@@ -67,16 +70,16 @@ class FindDoctors : AppCompatActivity() {
                 val doctorDetails = result.map { document ->
                     val doctor = document.toObject(Doctor::class.java)
                     arrayOf(
-//                        doctor.name,
-//                        doctor.address,
-//                        doctor.experience,
-//                        doctor.mobile,
-//                        doctor.fees
-                        "Doctor Name: ${doctor.name}",
-                        "Hospital Address: ${doctor.address}",
-                        "Exp: ${doctor.experience}",
-                        " ${doctor.email}",
-                        "Charges: ${doctor.fees}"
+                        doctor.name,
+                        doctor.address,
+                        doctor.experience,
+                        doctor.email,
+                        doctor.fees
+//                        "Doctor Name: ${doctor.name}",
+//                        "Hospital Address: ${doctor.address}",
+//                        "Exp: ${doctor.experience}",
+//                        " ${doctor.email}",
+//                        "Charges: ${doctor.fees}"
                     )
                 }.toTypedArray()
 
@@ -87,6 +90,9 @@ class FindDoctors : AppCompatActivity() {
             }
             .addOnFailureListener { exception ->
                 // Handle the error
+                Toast.makeText(this, "error fetching Doctor data ${exception}", Toast.LENGTH_SHORT)
+                    .show()
+                hideProgressDialog()
             }
     }
 }
