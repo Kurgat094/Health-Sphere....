@@ -8,6 +8,7 @@ data class Appointment(
     val fees: String = "",
     val name: String = "",
     val time: String = "",
+    var status: String = "Active",
     val userEmail: String = "" // User's email who made the appointment
 )
 

@@ -24,23 +24,42 @@ class AppointmentAdapter(private val context: Context, private val appointments:
         val tvTime = view.findViewById<TextView>(R.id.tvTime)
         val tvFees = view.findViewById<TextView>(R.id.tvFees)
         val Email = view.findViewById<TextView>(R.id.Email)
-        val tvName = view.findViewById<TextView>(R.id.tvAppointmentName)
+//        val tvName = view.findViewById<TextView>(R.id.tvAppointmentName)
         val tvStatus = view.findViewById<TextView>(R.id.tvAppointmentStatus)
         //val username = view.findViewById<TextView>(R.id.tvFees)
         Email.text = appointment?.userEmail
         tvDate.text = appointment?.date
         tvTime.text = appointment?.time
         tvFees.text = "Fees: Ksh ${appointment?.fees}"
-
-        tvName.text = appointment?.name
-        val isCompleted = appointment?.completed ?: false
-        if (isCompleted) {
-            tvStatus.text = "Completed"
-            tvStatus.setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_red_dark))
-        } else {
-            tvStatus.text = "Active"
-            tvStatus.setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_green_dark))
+        // Set the status text and background color based on the appointment status
+        when (appointment?.status) {
+            "Active" -> {
+                tvStatus.text = "Active"
+                tvStatus.setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_green_dark))
+            }
+            "Ongoing" -> {
+                tvStatus.text = "Ongoing"
+                tvStatus.setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_orange_dark))
+            }
+            "Complete" -> {
+                tvStatus.text = "Completed"
+                tvStatus.setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_red_dark))
+            }
+            else -> {
+                tvStatus.text = "Unknown"
+                tvStatus.setBackgroundColor(ContextCompat.getColor(context, android.R.color.darker_gray))
+            }
         }
+
+//        tvName.text = appointment?.name
+//        val isCompleted = appointment?.completed ?: false
+//        if (isCompleted) {
+//            tvStatus.text = "Completed"
+//            tvStatus.setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_red_dark))
+//        } else {
+//            tvStatus.text = "Active"
+//            tvStatus.setBackgroundColor(ContextCompat.getColor(context, android.R.color.holo_green_dark))
+//        }
 
         return view
     }

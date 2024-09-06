@@ -26,7 +26,7 @@ class CombinedAdapter(private val context: Context, private val items: List<Any>
 
         if (convertView == null) {
             val inflater = LayoutInflater.from(context)
-            view = inflater.inflate(R.layout.multilines, parent, false)
+            view = inflater.inflate(R.layout.multilines2, parent, false)
             viewHolder = ViewHolder(
                 line1 = view.findViewById(R.id.line1),
                 line2 = view.findViewById(R.id.line2),
@@ -43,20 +43,20 @@ class CombinedAdapter(private val context: Context, private val items: List<Any>
 
         when (item) {
             is Order -> {
-                viewHolder.line1.text = item.name
-                viewHolder.line2.text = item.address
-                viewHolder.line3.text = "Email: ${item.email}"
+                viewHolder.line1.text = "Ordered By: ${ item.name }"
+                viewHolder.line2.text = "Home Address: ${item.address}"
+                viewHolder.line6.text = "Email: ${item.email}"
                 viewHolder.line4.text = "Price: ${item.price} ksh"
                 viewHolder.line5.text = "Date: ${item.date}"
-                viewHolder.line6.text = "Time: ${item.time}"
+                viewHolder.line3.text = "Time: ${item.time}"
             }
             is DoctorBooking -> {
-                viewHolder.line1.text = item.name
-                viewHolder.line2.text = item.address
-                viewHolder.line3.text = "Email: ${item.email}"
+                viewHolder.line1.text = "Doctor: {item.name}"
+                viewHolder.line2.text = "Docotor Location: ${item.address}"
+                viewHolder.line6.text = "Email: ${item.email}"
                 viewHolder.line4.text = "Fees: ${item.fees} ksh"
                 viewHolder.line5.text = "Date: ${item.date}"
-                viewHolder.line6.text = "Time: ${item.time}"
+                viewHolder.line3.text = "Time: ${item.time}"
             }
         }
         return view
