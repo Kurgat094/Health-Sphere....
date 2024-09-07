@@ -84,7 +84,8 @@
             android:textStyle="italic"/>
         <TextView
             android:id="@+id/line3"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.20"
             android:layout_height="wrap_content"
             android:text="No"
             android:textColor="@color/black"
@@ -94,7 +95,7 @@
         <TextView
             android:id="@+id/line4"
             android:layout_width="0dp"
-            android:layout_weight="0.90"
+            android:layout_weight="0.50"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="16sp"

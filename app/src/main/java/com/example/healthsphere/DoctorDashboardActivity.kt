@@ -55,6 +55,7 @@ class DoctorDashboardActivity : BazeActivity() {
 
         db.collection("appointments")
             .whereEqualTo("email", doctorEmail)
+            .whereEqualTo("completed", false)
             .get()
             .addOnSuccessListener { documents ->
                 var totalFees = 0
@@ -77,12 +78,17 @@ class DoctorDashboardActivity : BazeActivity() {
                             // Appointment is ongoing
                             appointment.status = "Ongoing"
                         }
-                        currentTime > appointmentEndTime -> {
-                            // Appointment is complete
+                        else -> {
                             appointment.status = "Complete"
-                            markAppointmentComplete(document.id)
                         }
+//                        currentTime > appointmentEndTime -> {
+//                            // Appointment is complete
+//                            appointment.status = "Complete"
+//                            markAppointmentComplete(document.id)
+//                        }
                     }
+                    // Add appointment to the list
+                    appointments.add(appointment)
 
                     if (appointment.status != "Complete") {
                         appointments.add(appointment)

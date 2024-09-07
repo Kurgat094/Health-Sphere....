@@ -46,16 +46,16 @@ class CombinedAdapter(private val context: Context, private val items: List<Any>
                 viewHolder.line1.text = "Ordered By: ${ item.name }"
                 viewHolder.line2.text = "Home Address: ${item.address}"
                 viewHolder.line6.text = "Email: ${item.email}"
-                viewHolder.line4.text = "Price: ${item.price} ksh"
-                viewHolder.line5.text = "Date: ${item.date}"
+                viewHolder.line4.text = "Date: ${item.date}"
+                viewHolder.line5.text = "Price: ${item.price} ksh"
                 viewHolder.line3.text = "Time: ${item.time}"
             }
             is DoctorBooking -> {
-                viewHolder.line1.text = "Doctor: {item.name}"
+                viewHolder.line1.text = "Doctor: ${item.name}"
                 viewHolder.line2.text = "Docotor Location: ${item.address}"
                 viewHolder.line6.text = "Email: ${item.email}"
-                viewHolder.line4.text = "Fees: ${item.fees} ksh"
-                viewHolder.line5.text = "Date: ${item.date}"
+                viewHolder.line4.text = "Date: ${item.date}"
+                viewHolder.line5.text = "Fees: ${item.fees} ksh"
                 viewHolder.line3.text = "Time: ${item.time}"
             }
         }

@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:background="@color/blue_1"
+    android:background="@drawable/back1"
     android:layout_height="match_parent"
     tools:context=".OrderDetActivity">
-
     <LinearLayout
         android:layout_marginTop="20dp"
         android:layout_width="50dp"
@@ -27,7 +26,6 @@
         android:layout_height="match_parent"
         android:layout_below="@id/backbtn"
         >
-
         <TextView
             android:id="@+id/tvFindDocTop"
             android:layout_width="match_parent"
@@ -60,9 +58,8 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvFindDocTop" />
-
         <ListView
-            android:background="@color/whatsapp_grey"
+            android:background="@drawable/back2"
             android:id="@+id/lvOrderDetails"
             android:layout_width="350dp"
             android:layout_height="500dp"

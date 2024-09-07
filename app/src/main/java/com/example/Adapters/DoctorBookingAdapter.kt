@@ -42,8 +42,8 @@ class DoctorBookingAdapter(private val context: Context, private val items: List
         viewHolder.line1.text = item.name
         viewHolder.line2.text = item.address
         viewHolder.line3.text = "Email: ${item.email}"
-        viewHolder.line4.text = "Fees: ${item.fees} ksh"
-        viewHolder.line5.text = "Date: ${item.date}"
+        viewHolder.line4.text = "Date: ${item.date}"
+        viewHolder.line5.text =  "Fees: ${item.fees} ksh"
         viewHolder.line6.text = "Time: ${item.time}"
 
         return view
